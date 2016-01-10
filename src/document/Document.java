@@ -42,6 +42,13 @@ protected List<String> getTokens(String pattern)
     return tokens;
 }
 
+protected boolean isVowel(char c) 
+{
+    // For the purpose of Module 1, we've been instructed
+    // to also consider the letter 'y' as a vowel
+    return (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'y');
+}
+
 // This is a helper function that returns the number of syllables
 // in a word. You should write this and use it in your BasicDocument class.
 // You will probably NOT need to add a countWords or a countSentences method
@@ -116,7 +123,9 @@ public String getText()
 public double getFleschScore()
 {
     // TODO: Implement this method
-    return 0.0;
+    return (206.835 
+            - 1.015*((double)getNumWords()/getNumSentences())
+            - 84.6*((double)getNumSyllables()/getNumWords()));
 }
 
 

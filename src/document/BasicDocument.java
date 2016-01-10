@@ -29,8 +29,8 @@ public BasicDocument(String text)
 public int getNumWords()
 {
     //TODO: Implement this method.  See the Module 1 support videos 
-    // if you need help.
-    return 0;
+    // if you need help.  
+    return getTokens("[a-zA-Z]+").size();
 }
 
 /**
@@ -46,7 +46,7 @@ public int getNumSentences()
 {
     //TODO: Implement this method.  See the Module 1 support videos 
     // if you need help.
-    return 0;
+    return getTokens("[^\\.|^\\?|!]+").size();
 }
 
 /**
@@ -62,9 +62,32 @@ public int getNumSyllables()
 {
     //TODO: Implement this method.  See the Module 1 support videos 
     // if you need help.
-    return 0;
-}
+        List<String> words = getTokens("[a-zA-Z]+");
+    int vowels = 0;
+    int prevVowels = 0;
+    for(String word : words) {
+        boolean inVowel = false;
+        prevVowels = vowels;
+        String lWord = word.toLowerCase();
+        for(char c : lWord.toCharArray()) {
+            if(isVowel(c)) {
+                if(!inVowel) {
+                    ++vowels;
+                }
+                inVowel = true;
+            } else {
+                inVowel = false;
+            }
+        }
 
+        if(lWord.charAt(lWord.length()-1) == 'e' 
+           && !isVowel(lWord.charAt(lWord.length()-2)) 
+           && (vowels - prevVowels > 1)) {
+            --vowels;
+        } 
+    }
+    return vowels;
+}
 
 /* The main method for testing this class. 
  * You are encouraged to add your own tests.  */
@@ -86,8 +109,6 @@ public static void main(String[] args)
     testCase(new BasicDocument("Sentences?!"), 3, 1, 1);
     testCase(new BasicDocument("Lorem ipsum dolor sit amet, qui ex choro quodsi moderatius, nam dolores explicari forensibus ad."),
              32, 15, 1);
-
-
 }
 
 }
