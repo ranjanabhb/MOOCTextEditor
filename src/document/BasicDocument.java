@@ -62,31 +62,12 @@ public int getNumSyllables()
 {
     //TODO: Implement this method.  See the Module 1 support videos 
     // if you need help.
-        List<String> words = getTokens("[a-zA-Z]+");
-    int vowels = 0;
-    int prevVowels = 0;
+    List<String> words = getTokens("[a-zA-Z]+");
+    int syllables = 0;    
     for(String word : words) {
-        boolean inVowel = false;
-        prevVowels = vowels;
-        String lWord = word.toLowerCase();
-        for(char c : lWord.toCharArray()) {
-            if(isVowel(c)) {
-                if(!inVowel) {
-                    ++vowels;
-                }
-                inVowel = true;
-            } else {
-                inVowel = false;
-            }
-        }
-
-        if(lWord.charAt(lWord.length()-1) == 'e' 
-           && !isVowel(lWord.charAt(lWord.length()-2)) 
-           && (vowels - prevVowels > 1)) {
-            --vowels;
-        } 
+        syllables += countSyllables(word);
     }
-    return vowels;
+    return syllables;
 }
 
 /* The main method for testing this class. 

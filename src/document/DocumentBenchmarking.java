@@ -12,6 +12,12 @@ import java.io.InputStreamReader;
 
 public class DocumentBenchmarking {
 
+private static double timeExecution(Document doc) {
+    long startTime = System.nanoTime();
+    doc.getFleschScore();
+    long endTime = System.nanoTime();
+    return (double)(endTime - startTime)/1000000000.0;    
+}
 
 public static void main(String [] args) {
 
@@ -58,7 +64,11 @@ public static void main(String [] args) {
          * 6. Print out the time it took to complete the loop in step 5 
          *      (on the same line as the first print statement) followed by a newline (\n) 
          */  
-
+        String testText = getStringFromFile(textfile, numToCheck);
+        BasicDocument bDoc = new BasicDocument(testText);
+        EfficientDocument eDoc = new EfficientDocument(testText);
+        System.out.println(numToCheck + "\t" + timeExecution(bDoc) 
+                           + "\t" + timeExecution(eDoc));
     }
 
 }

@@ -2,6 +2,5 @@
 *.project
 *.settings
 *eclipse*
-*.class*
+*class*
 *.zip*
-bin/
