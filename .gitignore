@@ -5,3 +5,4 @@
 *.class*
 *.zip*
 bin/
+grader_output/
