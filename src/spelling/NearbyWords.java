@@ -86,8 +86,7 @@ public void insertions(String s, List<String> currentList, boolean wordsOnly ) {
             // (if wordsOnly is true) is a real word, add to the list
             if(!currentList.contains(sb.toString()) && 
                     (!wordsOnly||dict.isWord(sb.toString())) &&
-                    !s.equals(sb.toString())) {
-                //System.out.println("\t" + sb.toString() + " is a word!");
+                    !s.equals(sb.toString())) {                
                 currentList.add(sb.toString());
             }
         }
@@ -112,8 +111,7 @@ public void deletions(String s, List<String> currentList, boolean wordsOnly ) {
         // (if wordsOnly is true) is a real word, add to the list
         if(!currentList.contains(sb.toString()) && 
                 (!wordsOnly||dict.isWord(sb.toString())) &&
-                !s.equals(sb.toString())) {
-            System.out.println("\t" + sb.toString() + " is a word!");
+                !s.equals(sb.toString())) {            
             currentList.add(sb.toString());
         }
     }
